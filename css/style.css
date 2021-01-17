@@ -1,0 +1,10 @@
+.maindiv{
+    position: relative;
+    text-align: center;
+
+}
+.maindiv img {
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+}
