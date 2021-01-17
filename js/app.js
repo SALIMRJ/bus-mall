@@ -9,7 +9,11 @@ var img2index=0;
 var img3index=0;
 
 var button = document.createElement('button');
+ lab11-busmall
         button.innerHTML='Show Rsselt';
+
+        button.innerHTML=Show Results';
+ main
         button.addEventListener('click',showR);
 
        function showR(){
