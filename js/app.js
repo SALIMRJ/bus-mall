@@ -8,7 +8,7 @@ var img2index=0;
 var img3index=0;
 
 var button = document.createElement('button');
-        button.innerHTML='show R';
+        button.innerHTML=Show Results';
         button.addEventListener('click',showR);
 
        function showR(){
