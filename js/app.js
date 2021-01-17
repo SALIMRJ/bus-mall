@@ -1,4 +1,5 @@
 'use strict';
+//salim
 var left_img=document.getElementById('img1');
 var center_img=document.getElementById('img2');
 var right_img=document.getElementById('img3');
@@ -8,7 +9,7 @@ var img2index=0;
 var img3index=0;
 
 var button = document.createElement('button');
-        button.innerHTML='show R';
+        button.innerHTML='Show Rsselt';
         button.addEventListener('click',showR);
 
        function showR(){
