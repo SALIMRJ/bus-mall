@@ -7,18 +7,30 @@ var rList = document.getElementById('listR');
 var img1index =0;
 var img2index=0;
 var img3index=0;
+var chartClick=[];
+var chartView=[];
+var Arrname=[];
 
 var button = document.createElement('button');
- lab11-busmall
+
         button.innerHTML='Show Rsselt';
 
-        button.innerHTML=Show Results';
- main
+        
+
         button.addEventListener('click',showR);
 
        function showR(){
         
         var litems ;
+
+        for(var i =0;i<Products.prototype.imgarray.length;i++){
+            chartClick[i]=Products.prototype.imgarray[i].click;
+            Arrname[i]+=' View '+Products.prototype.imgarray[i].time_shown+' time';
+      
+          }
+      
+            
+
         for(var i = 0; i<Products.prototype.imgarray.length;i++)
         {
            litems=document.createElement('li');
@@ -27,13 +39,53 @@ var button = document.createElement('button');
            rList.appendChild(litems);
              
         }
-    
+        var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
 
-       };
+    // The data for our dataset
+    data: {
+        labels: Arrname,
+        datasets: [{
+            label: 'Number of clicks',
+            backgroundColor: '#393e46',
+            borderColor: '#393e46',
+            data: chartClick
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+
+
+ var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: Arrname,
+        datasets: [{
+            label: 'Number of clicks',
+            backgroundColor: '#393e46',
+            borderColor: '#393e46',
+            data: chartClick
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+
+    };
 
 
 var maxAttempts = 25;
 var AttemptsCounter = 0;
+
 
 function Products(name,Sorcel){
 this.pname=name;
@@ -41,6 +93,7 @@ this.pname=name;
  this. time_shown=0;
  this.click=0;
 Products.prototype.imgarray.push(this);
+Arrname.push(name);
 }
 Products.prototype.imgarray=[];
 new Products('bag','img/bag.jpg');
@@ -96,11 +149,23 @@ else{
 
 
 function getIndexRandom(){
-    img1index=getrandom();
-    do{
-        img2index=getrandom();
-        img3index=getrandom();
-    }while(img1index ===img2index || img1index===img3index||img3index===img2index );
+    var image1,image2,image3; 
+    
+    image1=img1index;image2=img2index;image3=img3index; 
+   do{
+        img1index=getrandom();
+        
+
+            do{
+                img2index=getrandom();
+                img3index=getrandom();
+            }while(img1index ===img2index || img1index===img3index||img3index===img2index );
+           
+
+            
+    }while(image1===img1index||image1===img2index||image1===img3index||
+        image2===img1index||image2===img2index||image2===img3index ||
+        image3===img1index||image3===img2index||image3===img3index);
     Products.prototype.imgarray[img1index].time_shown++;
     Products.prototype.imgarray[img2index].time_shown++;
     Products.prototype.imgarray[img3index].time_shown++;
