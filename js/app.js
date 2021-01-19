@@ -10,6 +10,9 @@ var img3index=0;
 var chartClick=[];
 var chartView=[];
 var Arrname=[];
+var localClick=[];
+var localView=[];
+var localName=[];
 
 var button = document.createElement('button');
 
@@ -22,10 +25,13 @@ var button = document.createElement('button');
        function showR(){
         
         var litems ;
+        var saveName=JSON.parse(localStorage.getItem('Name'));
+        var saveView=JSON.parse(localStorage.getItem('View'));
+        var saveClick=JSON.parse(localStorage.getItem('Click'));
 
         for(var i =0;i<Products.prototype.imgarray.length;i++){
-            chartClick[i]=Products.prototype.imgarray[i].click;
-            Arrname[i]+=' View '+Products.prototype.imgarray[i].time_shown+' time';
+            chartClick[i]=saveClick[i];
+            Arrname[i]+=' View '+saveView[i]+' time';
       
           }
       
@@ -34,8 +40,8 @@ var button = document.createElement('button');
         for(var i = 0; i<Products.prototype.imgarray.length;i++)
         {
            litems=document.createElement('li');
-           litems.textContent=Products.prototype.imgarray[i].pname+' show '+Products.prototype.imgarray[i].time_shown+
-           ' and click  '+Products.prototype.imgarray[i].click; 
+           litems.textContent=saveName[i]+' show '+saveView[i]+
+           ' and click  '+saveClick[i]; 
            rList.appendChild(litems);
              
         }
@@ -51,28 +57,7 @@ var chart = new Chart(ctx, {
             label: 'Number of clicks',
             backgroundColor: '#393e46',
             borderColor: '#393e46',
-            data: chartClick
-        }]
-    },
-
-    // Configuration options go here
-    options: {}
-});
-
-
- var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'bar',
-
-    // The data for our dataset
-    data: {
-        labels: Arrname,
-        datasets: [{
-            label: 'Number of clicks',
-            backgroundColor: '#393e46',
-            borderColor: '#393e46',
-            data: chartClick
+            data: saveClick
         }]
     },
 
@@ -94,6 +79,7 @@ this.pname=name;
  this.click=0;
 Products.prototype.imgarray.push(this);
 Arrname.push(name);
+localName.push(name);
 }
 Products.prototype.imgarray=[];
 new Products('bag','img/bag.jpg');
@@ -140,6 +126,16 @@ else{
     left_img.removeEventListener('click',userclick);
     center_img.removeEventListener('click',userclick);
     right_img.removeEventListener('click',userclick);
+    for(var i=0; i<Products.prototype.imgarray.length;i++){
+ 
+      localView[i]=Products.prototype.imgarray[i].time_shown;
+      localClick[i]=Products.prototype.imgarray[i].click;
+    }
+    localStorage.clear();
+     localStorage.setItem('Name',JSON.stringify(localName) );
+     localStorage.setItem('View',JSON.stringify(localView));
+     localStorage.setItem('Click',JSON.stringify(localClick));
+
 
 }
 
@@ -180,5 +176,8 @@ function getrandom(){
 var Rnumber =Math.floor(Math.random() *(Products.prototype.imgarray.length))
 
 return Rnumber;
+}
+if(localName){
+    showR();
 }
 
