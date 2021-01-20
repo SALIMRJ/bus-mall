@@ -36,7 +36,7 @@ var button = document.createElement('button');
           }
       
             
-
+            rList.textContent='';
         for(var i = 0; i<Products.prototype.imgarray.length;i++)
         {
            litems=document.createElement('li');
